@@ -49,6 +49,16 @@ Run the development server
 python manage.py runserver
 ```
 
+## Testing
+
+This project uses standard Django unittest.
+
+To run tests
+
+```bash
+python manage.py test
+```
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
