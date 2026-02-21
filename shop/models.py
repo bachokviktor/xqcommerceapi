@@ -1,3 +1,4 @@
+from decimal import Decimal
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator, MaxValueValidator
@@ -13,7 +14,7 @@ class Item(models.Model):
     price = models.DecimalField(
         max_digits=10,
         decimal_places=2,
-        validators=[MinValueValidator(0.1)]
+        validators=[MinValueValidator(Decimal("0.1"))]
     )
     available = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
