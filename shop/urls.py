@@ -5,6 +5,6 @@ from . import views
 
 app_name = "shop"
 
-urlpatterns = {
+urlpatterns = [
     path("", views.empty, name="list_items"),
-}
+]
