@@ -6,6 +6,7 @@ from django.contrib.auth import get_user_model
 
 from . import serializers
 from .permissions import IsCurrentUserOrReadOnly
+from shop.models import Cart
 
 
 class ListCreateUserView(APIView):
@@ -24,7 +25,8 @@ class ListCreateUserView(APIView):
         serializer = serializers.CreateUserSerializer(data=request.data)
 
         if serializer.is_valid():
-            serializer.save()
+            user = serializer.save()
+            Cart.objects.create(owner=user)
 
             return Response(status=status.HTTP_201_CREATED)
 
