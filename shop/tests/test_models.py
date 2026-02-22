@@ -1,10 +1,10 @@
 from decimal import Decimal
-from pathlib import Path
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 from django.core.files import File
 
 from shop import models
+from .common import create_testing_image
 
 
 # Create your tests here.
@@ -44,11 +44,12 @@ class ItemModelTests(TestCase):
             seller=testing_seller,
         )
 
-        testing_image_path = Path(__file__).resolve().parent / "images/test_image.jpg"
-        with open(testing_image_path, "rb") as img:
-            item_photo = models.ItemPhoto(item=testing_item)
-            item_photo.photo.save("test_image.jpg", File(img))
-            item_photo.save()
+        testing_image = create_testing_image()
+        
+        item_photo = models.ItemPhoto.objects.create(
+            item=testing_item,
+            photo=File(testing_image)
+        )
 
         self.assertIn(item_photo, testing_item.photos.all())
         self.assertIsNotNone(item_photo.photo)
