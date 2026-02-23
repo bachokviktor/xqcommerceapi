@@ -1,4 +1,4 @@
-# XQCommerceAPI
+# XQCommerceAPI (development)
 
 Simple e-commerce system API built with Django REST Framework.
 
