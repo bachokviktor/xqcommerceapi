@@ -16,7 +16,7 @@ class ListCreateItemView(generics.ListCreateAPIView):
     of items, or create a new item.
     """
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    queryset = models.Item.objects.all()
+    queryset = models.Item.objects.all().order_by("-created_at")
     serializer_class = serializers.ItemSerializer
 
     def perform_create(self, serializer):

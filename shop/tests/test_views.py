@@ -38,7 +38,7 @@ class ListCreateItemTests(APITestCase):
         response = self.client.get(reverse("shop:list_items"), format="json")
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 3)
+        self.assertEqual(len(response.data["results"]), 3)
 
     def test_create_item(self):
         testing_seller = get_user_model().objects.create_user(
